@@ -6,10 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class SqlRuDateTimeParser implements DateTimeParser {
-    @Override
-    public LocalDateTime parse(String parse) throws ParseException {
-        String rsl = "";
-        Map<String, String> month = new HashMap<>();
+    private final Map<String, String> month = new HashMap<>();
+    {
         month.put("янв", "января");
         month.put("фев", "февраля");
         month.put("мар", "марта");
@@ -22,6 +20,11 @@ public class SqlRuDateTimeParser implements DateTimeParser {
         month.put("окт", "октября");
         month.put("ноя", "ноября");
         month.put("дек", "декабря");
+    }
+
+    @Override
+    public LocalDateTime parse(String parse) throws ParseException {
+        String rsl = "";
         String[] dateTimeArr = parse.split(" ");
         Locale localeRU = new Locale("ru", "RU");
         DateTimeFormatter mainFormatter = DateTimeFormatter.ofPattern("d MMM yy, HH:mm").withLocale(localeRU);
