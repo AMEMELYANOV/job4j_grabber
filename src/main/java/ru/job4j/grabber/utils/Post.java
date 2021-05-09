@@ -1,5 +1,11 @@
 package ru.job4j.grabber.utils;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 
 public class Post {
@@ -59,5 +65,30 @@ public class Post {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public void extract(String url) throws IOException, ParseException {
+        this.url = url;
+
+        Document doc = Jsoup.connect(url).get();
+        Element elementName = doc.getElementsByClass("messageHeader").get(0);
+        this.name = elementName.text().split("\\[")[0];
+
+        Element elementText = doc.getElementsByClass("msgBody").get(1);
+        this.text = elementText.text();
+
+        Element elementDate = doc.getElementsByClass("msgFooter").get(0);
+        SqlRuDateTimeParser parser = new SqlRuDateTimeParser();
+        String[] arrDate = elementDate.text().split(" ", 5);
+        this.date = parser.parse(String.join(" ", arrDate[0], arrDate[1], arrDate[2], arrDate[3]));
+    }
+
+    public static void main(String[] args) throws IOException, ParseException {
+        Post post = new Post();
+        post.extract("https://www.sql.ru/forum/1325330/lidy-be-fe-senior-cistemnye-analitiki-qa-i-devops-moskva-do-200t");
+        System.out.println(post.getUrl()
+                + System.lineSeparator() + post.getName()
+                + System.lineSeparator() + post.getText()
+                + System.lineSeparator() + post.getDate());
     }
 }
