@@ -3,10 +3,31 @@ package ru.job4j.grabber.utils;
 import java.time.LocalDateTime;
 
 public class Post {
+    private int id;
     private String name;
     private String url;
     private String text;
     private LocalDateTime date;
+
+    public Post() {
+
+    }
+
+    public Post(int id, String name, String url, String text, LocalDateTime date) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.text = text;
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
