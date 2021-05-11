@@ -27,7 +27,7 @@ public class SqlRuDateTimeParser implements DateTimeParser {
         String rsl = "";
         String[] dateTimeArr = parse.split(" ");
         Locale localeRU = new Locale("ru", "RU");
-        DateTimeFormatter mainFormatter = DateTimeFormatter.ofPattern("d MMM yy, HH:mm").withLocale(localeRU);
+        DateTimeFormatter mainFormatter = DateTimeFormatter.ofPattern("d MMMM yy, HH:mm").withLocale(localeRU);
         DateTimeFormatter shortFormatter = DateTimeFormatter.ofPattern("d MMM yy,").withLocale(localeRU);
         if (dateTimeArr.length > 1 && dateTimeArr[0].startsWith("сегодня")) {
             dateTimeArr[0] = LocalDateTime.now().format(shortFormatter);
@@ -46,10 +46,10 @@ public class SqlRuDateTimeParser implements DateTimeParser {
     public static void main(String[] args) throws ParseException {
         SqlRuDateTimeParser parser = new SqlRuDateTimeParser();
         String dateTime = "вчера, 17:34";
-        String dateTime1 = "сегодня, 18:20";
-        String dateTime2 = "12 май 20, 08:17";
+        String dateTime0 = "сегодня, 18:20";
+        String dateTime1 = "17 янв 07, 14:42";
         System.out.println(parser.parse(dateTime));
+        System.out.println(parser.parse(dateTime0));
         System.out.println(parser.parse(dateTime1));
-        System.out.println(parser.parse(dateTime2));
     }
 }
