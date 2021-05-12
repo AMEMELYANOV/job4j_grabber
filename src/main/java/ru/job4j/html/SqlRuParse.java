@@ -13,9 +13,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqlRuParse implements Parse {
-    SqlRuDateTimeParser parser = new SqlRuDateTimeParser();
-
+public class SqlRuParse {
     public static void parseUrl(String url) throws IOException {
         Document doc = Jsoup.connect(url).get();
         Elements elements = doc.getElementsByClass("forumTable").get(0).getElementsByTag("tr");
@@ -62,6 +60,7 @@ public class SqlRuParse implements Parse {
             post.setText(elementText.text());
 
             Element elementDate = doc.getElementsByClass("msgFooter").get(0);
+            SqlRuDateTimeParser parser = new SqlRuDateTimeParser();
             String[] arrDate = elementDate.text().split(" ");
             if (arrDate.length > 3) {
                 post.setDate(parser.parse(String.join(" ", arrDate[0], arrDate[1], arrDate[2], arrDate[3])));
@@ -90,5 +89,4 @@ public class SqlRuParse implements Parse {
             System.out.println("--------------------------------------------");
         }
     }
-
 }
