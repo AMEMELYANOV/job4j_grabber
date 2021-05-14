@@ -9,7 +9,17 @@ public class Cache<T, V> {
     private final Map<T, SoftReference<V>> dataMap = new HashMap<>();
 
     public V get(T key, Function<T, V> function) {
-        dataMap.putIfAbsent(key, new SoftReference<>(function.apply(key)));
-        return dataMap.get(key).get();
+        V value = null;
+        if (!dataMap.containsKey(key)) {
+            value = function.apply(key);
+            dataMap.put(key, new SoftReference<>(value));
+        } else {
+            value = dataMap.get(key).get();
+            if (value == null) {
+                value = function.apply(key);
+                dataMap.put(key, new SoftReference<>(value));
+            }
+        }
+        return value;
     }
 }
