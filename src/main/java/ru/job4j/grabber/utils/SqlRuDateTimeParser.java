@@ -31,7 +31,7 @@ public class SqlRuDateTimeParser implements DateTimeParser {
         DateTimeFormatter shortFormatter = DateTimeFormatter.ofPattern("d MMM yy,").withLocale(localeRU);
         if (dateTimeArr.length > 1 && dateTimeArr[0].startsWith("сегодня")) {
             dateTimeArr[0] = LocalDateTime.now().format(shortFormatter);
-            rsl = String.join(" ", dateTimeArr);
+            rsl = String.join(" ", dateTimeArr[0], dateTimeArr[1]);
         } else if (dateTimeArr.length > 1 && dateTimeArr[0].startsWith("вчера")) {
             dateTimeArr[0] = LocalDateTime.now().minusDays(1).format(shortFormatter);
             rsl = String.join(" ", dateTimeArr[0], dateTimeArr[1]);
@@ -47,7 +47,7 @@ public class SqlRuDateTimeParser implements DateTimeParser {
         SqlRuDateTimeParser parser = new SqlRuDateTimeParser();
         String dateTime = "вчера, 17:34";
         String dateTime0 = "сегодня, 18:20";
-        String dateTime1 = "17 янв 07, 14:42";
+        String dateTime1 = "16 мая 21, 11:08 [22322669] Ответить";
         System.out.println(parser.parse(dateTime));
         System.out.println(parser.parse(dateTime0));
         System.out.println(parser.parse(dateTime1));
