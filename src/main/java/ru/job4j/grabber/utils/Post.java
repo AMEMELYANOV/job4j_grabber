@@ -60,4 +60,15 @@ public class Post {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Post{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", url='" + url + '\''
+                + ", text='" + text + '\''
+                + ", date=" + date
+                + '}';
+    }
 }
