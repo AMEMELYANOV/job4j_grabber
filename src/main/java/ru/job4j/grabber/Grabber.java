@@ -95,28 +95,28 @@ public class Grabber implements Grab {
             for (int i = 2; i <= numPages; i++) {
                 urls.add(String.format("%s/%d", baseUrl, i));
         }
-//            int start = 2;
-//            boolean count = true;
-//            int responseCode = 0;
-//            String link = "";
-//            while (count) {
-//                try {
-//                    link = String.format("%s/%d", baseUrl, start);
-//                    URL url = new URL(link);
-//                    HttpURLConnection huc = (HttpURLConnection) url.openConnection();
-//                    responseCode = huc.getResponseCode();
-//                    System.out.println(link);
-//                    System.out.println(responseCode);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                if (responseCode != 200) {
-//                    System.out.println("BAD");
-//                    count = false;
-//                }
-//                urls.add(link);
-//                start++;
-//           }
+/*          int start = 2;
+            boolean count = true;
+            int responseCode = 0;
+            String link = "";
+            while (count) {
+                try {
+                    link = String.format("%s/%d", baseUrl, start);
+                    URL url = new URL(link);
+                    HttpURLConnection huc = (HttpURLConnection) url.openConnection();
+                    responseCode = huc.getResponseCode();
+                    System.out.println(link);
+                    System.out.println(responseCode);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (responseCode != 200) {
+                    System.out.println("BAD");
+                    count = false;
+                }
+                urls.add(link);
+                start++;
+           } */
 
             List<Post> posts = new ArrayList<>();
             for (String url : urls) {

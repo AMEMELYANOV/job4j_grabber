@@ -27,7 +27,7 @@ public class GCUser {
         for (int i = 0; i < 10000; i++) {
             new User("Name of user" + i, "Role of user" + i);
         }
-//        System.gc();
+/*        System.gc(); */
         info();
     }
 }

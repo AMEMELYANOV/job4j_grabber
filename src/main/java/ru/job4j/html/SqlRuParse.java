@@ -74,11 +74,12 @@ public class SqlRuParse implements Parse {
 
     public static void main(String[] args) throws Exception {
         String baseUrl = "https://www.sql.ru/forum/job-offers";
-//        int numPages = 5;
-//        parseUrl(baseUrl);
-//        for (int i = 2; i <= numPages; i++) {
-//            parseUrl(String.format("%s/%d", baseUrl, i));
-//        }
+/*        int numPages = 5;
+        parseUrl(baseUrl);
+        for (int i = 2; i <= numPages; i++) {
+            parseUrl(String.format("%s/%d", baseUrl, i));
+        }
+ */
 
         SqlRuParse ruParse = new SqlRuParse();
         List<Post> posts = ruParse.list(baseUrl);
